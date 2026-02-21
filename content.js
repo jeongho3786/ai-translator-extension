@@ -163,7 +163,15 @@ document.addEventListener("mousedown", (e) => {
 });
 
 // background.js에서 메시지 수신
-browser.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  // 단축키: 선택된 텍스트 반환
+  if (message.action === "get-selection") {
+    const selection = window.getSelection();
+    const text = selection ? selection.toString().trim() : "";
+    sendResponse({ text });
+    return;
+  }
+
   if (message.action === "translate") {
     // 사용자가 드래그한 선택 영역 위치 가져오기
     const selection = window.getSelection();
