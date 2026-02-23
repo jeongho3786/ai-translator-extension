@@ -2,7 +2,23 @@
   "manifest_version": 2,
   "name": "AI Translator",
   "version": "1.0",
-  "description": "선택한 영어 텍스트를 AI로 번역합니다",
+  "description": "Translate selected English/Japanese text to Korean using Claude AI. Features sentence analysis with grammar notes and chunk-by-chunk translation.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ai-translator@firefox-extension",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    }
+  },
+
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
 
   "permissions": [
     "contextMenus",
@@ -13,12 +29,14 @@
 
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "AI Translator 설정"
+    "default_title": "AI Translator 설정",
+    "default_icon": "icons/icon.svg"
   },
 
   "sidebar_action": {
-    "default_title": "AI 문장 파헤치기",
-    "default_panel": "sidebar.html"
+    "default_title": "AI 문장 번역기",
+    "default_panel": "sidebar.html",
+    "default_icon": "icons/icon.svg"
   },
 
   "background": {

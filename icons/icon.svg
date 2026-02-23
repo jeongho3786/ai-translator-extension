@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- 파란 배경 -->
+  <rect width="48" height="48" rx="10" fill="#4a90d9"/>
+
+  <!-- 상단 하이라이트 (입체감) -->
+  <rect x="0" y="0" width="48" height="24" rx="10" fill="white" opacity="0.08"/>
+
+  <!-- 영어 "A" (왼쪽 상단) -->
+  <text x="11" y="21"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="14" font-weight="bold"
+        fill="white" text-anchor="middle">A</text>
+
+  <!-- 구분선 -->
+  <line x1="4" y1="24.5" x2="19" y2="24.5"
+        stroke="white" stroke-width="0.7" opacity="0.45"/>
+
+  <!-- 일본어 "あ" (왼쪽 하단) -->
+  <text x="11" y="37"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="14" font-weight="bold"
+        fill="white" text-anchor="middle">あ</text>
+
+  <!-- 화살표 → -->
+  <line x1="21" y1="24" x2="27" y2="24"
+        stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <polyline points="24,21 27,24 24,27"
+        stroke="white" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- 한국어 "가" (오른쪽, 크게) -->
+  <text x="37" y="31"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="18" font-weight="bold"
+        fill="white" text-anchor="middle">가</text>
+</svg>

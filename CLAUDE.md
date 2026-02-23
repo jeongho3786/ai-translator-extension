@@ -24,7 +24,9 @@ ai-translator-extension/
   ├── popup.html       (API 키 입력 팝업 UI)
   ├── popup.js         (팝업 로직 - 키 저장/로드)
   ├── sidebar.html     (사이드바 UI - 문장 분석 결과 표시)
-  └── sidebar.js       (사이드바 로직 - 분석 데이터 요청 + 렌더링)
+  ├── sidebar.js       (사이드바 로직 - 분석 데이터 요청 + 렌더링)
+  └── icons/
+      └── icon.svg     (익스텐션 아이콘 - A/あ → 가 디자인)
 ```
 
 ---
@@ -37,13 +39,27 @@ ai-translator-extension/
   "manifest_version": 2,
   "name": "AI Translator",
   "version": "1.0",
-  "description": "선택한 영어 텍스트를 AI로 번역합니다",
+  "description": "Translate selected English/Japanese text to Korean using Claude AI. ...",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ai-translator@firefox-extension",
+      "strict_min_version": "57.0"
+    }
+  },
+  "icons": { "48": "icons/icon.svg", "96": "icons/icon.svg" },
   "permissions": [...],
+  "browser_action": { "default_icon": "icons/icon.svg", ... },
+  "sidebar_action": { "default_icon": "icons/icon.svg", ... },
   "background": {...},
   "commands": {...},
   "content_scripts": [...]
 }
 ```
+
+### browser_specific_settings
+Firefox 전용 설정. AMO 제출 시 필수.
+- `id`: 익스텐션 고유 ID. 업데이트 시 `browser.storage.local` 데이터(API 키) 유지에 필요
+- `strict_min_version`: 최소 Firefox 버전. `sidebarAction.open()`이 Firefox 57+에서 지원되므로 57.0으로 설정
 
 ### permissions (권한)
 익스텐션이 브라우저에게 "이 기능을 사용할게요"라고 요청하는 것
@@ -276,10 +292,14 @@ background.js에서 보낸 메시지를 수신하고, 팝오버 UI로 번역 결
   - 사이드바 너비: Firefox 기본 드래그 리사이즈 사용 (별도 구현 불필요)
   - 상세 구현 계획: `.claude/plans/recursive-greeting-allen.md` 참조
 
-- [ ] 8단계: Firefox 익스텐션 배포
-  - Firefox Add-ons (addons.mozilla.org)에 제출
-  - 배포에 필요한 파일 정리 및 패키징 (.zip)
-  - manifest.json 검증 및 배포 요구사항 확인
+- [x] 8단계: Firefox 익스텐션 배포
+  - [x] 아이콘 생성 (`icons/icon.svg` - A/あ → 가 디자인)
+  - [x] manifest.json에 아이콘, `browser_specific_settings`, 영어 description 추가
+  - [x] 사이드바 타이틀 "AI 문장 파헤치기" → "AI 문장 번역기"
+  - [x] manifest.json 오류 수정 (`data_collection_permissions`, `strict_min_version: 140.0`)
+  - [x] zip 패키징 (포함: manifest.json, background.js, content.js, popup.html, popup.js, sidebar.html, sidebar.js, icons/)
+  - [x] AMO 제출 완료 (검토 대기 중)
+  - [x] Reviewer notes 작성 (dangerous-direct-browser-access 및 all_urls 사용 이유 영어로 설명)
 
 - [ ] 9단계: 멀티 AI 서비스 지원
   - 사용자가 AI 서비스(Claude, GPT, Gemini)를 선택하고 해당 API 키를 입력
