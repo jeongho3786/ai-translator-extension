@@ -67,21 +67,26 @@ function splitSentences(text) {
   return text.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 0);
 }
 
-// --- 익스텐션 설치 시 컨텍스트 메뉴 생성 ---
+// --- 컨텍스트 메뉴 생성 (기존 메뉴 제거 후 재생성) ---
 
-browser.runtime.onInstalled.addListener(() => {
-  browser.contextMenus.create({
-    id: "translate-selection",
-    title: "AI로 번역하기",
-    contexts: ["selection"],
-  });
+function createContextMenus() {
+  browser.contextMenus.removeAll().then(() => {
+    browser.contextMenus.create({
+      id: "translate-selection",
+      title: "AI로 번역하기",
+      contexts: ["selection"],
+    });
 
-  browser.contextMenus.create({
-    id: "analyze-selection",
-    title: "AI 문장 파헤치기",
-    contexts: ["selection"],
+    browser.contextMenus.create({
+      id: "analyze-selection",
+      title: "AI 문장 파헤치기",
+      contexts: ["selection"],
+    });
   });
-});
+}
+
+browser.runtime.onInstalled.addListener(createContextMenus);
+createContextMenus();
 
 // --- 컨텍스트 메뉴 클릭 처리 ---
 
