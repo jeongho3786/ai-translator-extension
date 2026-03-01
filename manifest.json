@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "AI Translator",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Translate selected English/Japanese text to Korean using Claude AI. Features sentence analysis with grammar notes and chunk-by-chunk translation.",
 
   "browser_specific_settings": {
