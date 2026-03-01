@@ -298,8 +298,9 @@ background.js에서 보낸 메시지를 수신하고, 팝오버 UI로 번역 결
   - [x] 사이드바 타이틀 "AI 문장 파헤치기" → "AI 문장 번역기"
   - [x] manifest.json 오류 수정 (`data_collection_permissions`, `strict_min_version: 140.0`)
   - [x] zip 패키징 (포함: manifest.json, background.js, content.js, popup.html, popup.js, sidebar.html, sidebar.js, icons/)
-  - [x] AMO 제출 완료 (검토 대기 중)
+  - [x] AMO 제출 완료 (v1.0)
   - [x] Reviewer notes 작성 (dangerous-direct-browser-access 및 all_urls 사용 이유 영어로 설명)
+  - [x] v1.1 버그 수정: 브라우저 재시작 후 컨텍스트 메뉴 미표시 문제 수정 → AMO 업데이트 제출
 
 - [ ] 9단계: 멀티 AI 서비스 지원
   - 사용자가 AI 서비스(Claude, GPT, Gemini)를 선택하고 해당 API 키를 입력
